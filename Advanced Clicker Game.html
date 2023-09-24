@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advanced Clicker Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body 
+      {
+        background-color: #1c7cb8;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Pizza Clicker</h1>
+    <h2>Click the button for pizza!</h2>
+    <div style="display: inline-block">
+        <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(5)-1.png%20(1).png?v=1690310448076" style="width: 100px">
+        <span id="score">Pizzas: 0</span>
+        <button onclick="clickMe()">Make a Pizza</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(7).png?v=1690313146117" style="width: 100px">
+      <span id="ovenCounter">Ovens: 0</span>
+      <button onclick="buyOven()">Buy an Oven (10 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/Microwave-1.png%20(1).png?v=1690310666021" style="width: 100px">
+      <span id="microwaveCounter">Microwaves: 0</span>
+      <button onclick="buyMicrowave()">Buy a Microwave (50 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(9).png?v=1690315763144" style="width: 100px">
+      <span id="pizzaDeliveryWorkerLabel">Pizza Delivery Workers: 0</span>
+      <button onclick="buyPizzaDeliveryWorker()">Buy a Pizza Delivery Worker (100 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(10).png?v=1690316872232" style="width: 100px">
+      <span id="pizzaDeliveryTruckLabel">Pizza Delivery Trucks: 0</span>
+      <button onclick="buyPizzaDeliveryTruck()">Buy a Pizza Delivery Truck (1,000 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/Pizza%20Shop-1.png.png?v=1690396021224" style="width: 100px">
+      <span id="pizzaShopLabel">Pizza Shops: 0</span>
+      <button onclick="buyPizzaShop()">Buy a Pizza Shop (10,000 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(12).png?v=1690403005385" style="width: 100px">
+      <span id="pizzaAppLabel">Pizza Apps: 0</span>
+      <button onclick="buyPizzaApp()">Make a Pizza App (100,000 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(13)-1.png%20(1).png?v=1690489061785" style="width: 100px">
+      <span id="pizzaFoodTruckLabel">Pizza Food Trucks: 0</span>
+      <button onclick="buyPizzaFoodTruck()">Buy a Pizza Food Truck (1,000,000 Clicks)</button>
+    </div>
+    <div style="display: inline-block">
+      <img src="https://cdn.glitch.global/6478f568-f4d1-4e08-8201-a2d7f776afd8/New%20Piskel-1.png%20(13)-1.png%20(1).png?v=1690489061785" style="width: 100px">
+      <span id="pizzaFranchiseLabel">Pizza Franchises: 0</span>
+      <button onclick="buyPizzaFranchise()">Buy a Pizza Franchise Store (10,000,000 Clicks)</button>
+    </div>
+    <p id="highScoreLabel">High Score:</p>
+
+    <script>
+      
+      var score = 0;
+      var microwave = 0;
+      var oven = 0;
+      var pizzaDeliveryWorker = 0;
+      var pizzaDeliveryTruck = 0;
+      var pizzaShop = 0;
+      var pizzaApp = 0;
+      var pizzaFoodTruck = 0;
+      var pizzaFranchise = 0;
+      var highScore = localStorage.getItem("highScore") || 0;
+      document.getElementById("highScoreLabel").innerHTML = "High Score: " + highScore;
+
+      function clickMe() {
+        score = score + 1 + oven + microwave * 5 + pizzaDeliveryWorker * 10 + pizzaDeliveryTruck * 100 + pizzaShop * 1000 + pizzaApp * 10000 + pizzaFoodTruck * 100000;
+        document.getElementById("score").innerHTML = "Pizzas: " + score;
+        if (score > highScore)
+          {
+            localStorage.setItem("highScore", score);
+            document.getElementById("highScoreLabel").innerHTML = "High Score: " + score;
+          }
+      }
+
+      function buyOven() {
+        if (score >= 10) {
+          oven = oven + 1;
+          score = score - 10;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("ovenCounter").innerHTML = "Ovens: " + oven;
+        }
+      }
+      
+       function buyMicrowave() {
+        if (score >= 50) {
+          microwave = microwave + 1;
+          score = score - 50;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("microwaveCounter").innerHTML = "Microwaves: " + microwave;
+        }
+      }
+
+      function buyPizzaDeliveryWorker() {
+        if (score >= 100) {
+          pizzaDeliveryWorker = pizzaDeliveryWorker + 1;
+          score = score - 100;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaDeliveryWorkerLabel").innerHTML = "Pizza Delivery Workers: " + pizzaDeliveryWorker;
+        }
+      }
+      
+      function buyPizzaDeliveryTruck() {
+        if (score >= 1000) {
+          pizzaDeliveryTruck = pizzaDeliveryTruck + 1;
+          score = score - 1000;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaDeliveryTruckLabel").innerHTML = "Pizza Delivery Trucks: " + pizzaDeliveryTruck;
+        }
+      }
+      function buyPizzaShop() {
+        if (score >= 10000) {
+          pizzaShop = pizzaShop + 1;
+          score = score - 10000;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaShopLabel").innerHTML = "Pizza Shops: " + pizzaShop;
+        }
+      }
+      function buyPizzaApp() {
+        if (score >= 100000) {
+          pizzaApp = pizzaApp + 1;
+          score = score - 100000;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaAppLabel").innerHTML = "Pizza Apps: " + pizzaApp;
+        }
+      }
+      function buyPizzaFoodTruck() {
+        if (score >= 1000000) {
+          pizzaFoodTruck = pizzaFoodTruck + 1;
+          score = score - 1000000;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaFoodTruckLabel").innerHTML = "Pizza Food Trucks: " + pizzaFoodTruck;
+        }
+      }
+      function buyPizzaFranchise() {
+        if (score >= 10000000) {
+          pizzaFranchise = pizzaFranchise + 1;
+          score = score - 10000000;
+          document.getElementById("score").innerHTML = "Pizzas: " + score;
+          document.getElementById("pizzaFranchiseLabel").innerHTML = "Pizza Franchises: " + pizzaFranchise;
+        }
+      }
+    </script>
+  </body>
+</html>
